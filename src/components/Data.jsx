@@ -13,7 +13,9 @@ class Data extends React.Component {
 
 handleSubmit = (e) => {
   e.preventDefault();
-    axios.get("https://itunes.apple.com/search?term=bassnectar&limit=15")
+    const artist = e.target.elements.artist.value;
+    const replaced = artist.replace(/ /g, '+');
+    axios.get(`https://itunes.apple.com/search?term=${replaced}&limit=15`)
       .then((response) => {
       let res = response.data;
       this.setState({ items: res.results})
@@ -30,9 +32,12 @@ handleSubmit = (e) => {
           {this.state.items.map((item,i) =>
           <li key={i}>
            <img src={item.artworkUrl100} alt="albumImage" />
-           <p>Artist: {item.artistName}</p>
            <p>Song Name: {item.trackName}</p>
+           <p>Artist: {item.artistName}</p>
            <p>Album: {item.collectionName}</p>
+           <p><audio src={item.previewUrl} controls></audio></p>
+           <p><a href={item.artistViewUrl} target="_blank">View Artist</a></p>
+           <p><a href={item.trackViewUrl} target="_blank">View Album</a></p>
           </li>
            )}
         </ul>
