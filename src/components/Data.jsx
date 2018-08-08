@@ -3,10 +3,6 @@ import Search from './Search';
 import axios from "axios";
 
 
-const headers = {
-        'X-Requested-With': 'XMLHttpRequest',
-        "Access-Control-Allow-Origin": '*'
-      }
 
 
 class Data extends React.Component {
@@ -21,7 +17,11 @@ handleSubmit = (e) => {
   e.preventDefault();
   const artist = e.target.elements.artist.value;
   const replaced = artist.replace(/ /g, '+');
-    axios.get(`https://itunes.apple.com/search?term=${replaced}&limit=15`, {headers:headers})
+    axios.get(`https://itunes.apple.com/search?term=${replaced}&limit=15`, { headers: {
+            "Access-Control-Allow-Origin": '*',
+            'Content-Type': 'application/json'
+          }
+        })
       .then((response) => {
       let res = response.data;
       this.setState({ items: res.results})
