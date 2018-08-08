@@ -6,7 +6,7 @@ class Search extends React.Component {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <input type="search" name="artist" placeholder="Search Artist"/>
-        <button>Find Albums</button>
+        <button class="find-music">Find Music</button>
       </form>
     );
   }
