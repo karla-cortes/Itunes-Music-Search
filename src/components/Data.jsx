@@ -31,13 +31,14 @@ handleSubmit = (e) => {
         <ul>
           {this.state.items.map((item,i) =>
           <li key={i}>
-           <img src={item.artworkUrl100} alt="albumImage" />
-           <p>Song Name: {item.trackName}</p>
+
+           <img src={item.artworkUrl100.replace('100x100', '200x200')} alt="albumImage" className="album-image"/>
+           <p>Song: {item.trackName}</p>
            <p>Artist: {item.artistName}</p>
            <p>Album: {item.collectionName}</p>
            <p><audio src={item.previewUrl} controls></audio></p>
-           <p><a href={item.artistViewUrl} target="_blank">View Artist</a></p>
-           <p><a href={item.trackViewUrl} target="_blank">View Album</a></p>
+           <p><a href={item.artistViewUrl} target="_blank" className="link-button">View Artist</a></p>
+           <p><a href={item.trackViewUrl} target="_blank" className="link-button">View Album</a></p>
           </li>
            )}
         </ul>
