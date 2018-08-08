@@ -17,11 +17,16 @@ handleSubmit = (e) => {
   e.preventDefault();
   const artist = e.target.elements.artist.value;
   const replaced = artist.replace(/ /g, '+');
-    axios.get(`https://itunes.apple.com/search?term=${replaced}&limit=15`, { headers: {
-            "Access-Control-Allow-Origin": '*',
-            'Content-Type': 'application/json'
-          }
-        })
+    axios.get(`https://itunes.apple.com/search?term=${replaced}&limit=15`,  {
+      method: 'GET',
+      mode: 'no-cors',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true,
+      credentials: 'same-origin',
+    })
       .then((response) => {
       let res = response.data;
       this.setState({ items: res.results})
