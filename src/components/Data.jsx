@@ -22,8 +22,7 @@ handleSubmit = (e) => {
       mode: 'no-cors',
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Methods':'GET'
+        'Access-Control-Allow-Headers': 'application/json'
       },
       withCredentials: true,
       credentials: 'same-origin',
