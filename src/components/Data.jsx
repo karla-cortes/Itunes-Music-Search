@@ -13,8 +13,8 @@ class Data extends React.Component {
 
 handleSubmit = (e) => {
   e.preventDefault();
-    const artist = e.target.elements.artist.value;
-    const replaced = artist.replace(/ /g, '+');
+  const artist = e.target.elements.artist.value;
+  const replaced = artist.replace(/ /g, '+');
     axios.get(`https://itunes.apple.com/search?term=${replaced}&limit=15`)
       .then((response) => {
       let res = response.data;
@@ -26,19 +26,20 @@ handleSubmit = (e) => {
 
   render() {
     return (
-      <div className="Data">
+      <div className="data">
         <Search handleSubmit={this.handleSubmit}/>
         <ul>
           {this.state.items.map((item,i) =>
           <li key={i}>
-
            <img src={item.artworkUrl100.replace('100x100', '200x200')} alt="albumImage" className="album-image"/>
-           <p>Song: {item.trackName}</p>
-           <p>Artist: {item.artistName}</p>
-           <p>Album: {item.collectionName}</p>
+           <div className="album-info">
+           <p><span>Song </span> {item.trackName}</p>
+           <p><span>Artist </span> {item.artistName}</p>
+           <p><span>Album </span> {item.collectionName}</p>
            <p><audio src={item.previewUrl} controls></audio></p>
            <p><a href={item.artistViewUrl} target="_blank" className="link-button">View Artist</a></p>
            <p><a href={item.trackViewUrl} target="_blank" className="link-button">View Album</a></p>
+           </div>
           </li>
            )}
         </ul>
