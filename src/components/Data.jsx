@@ -3,8 +3,6 @@ import Search from './Search';
 import axios from "axios";
 
 
-
-
 class Data extends React.Component {
   constructor(props) {
     super(props);
@@ -17,16 +15,7 @@ handleSubmit = (e) => {
   e.preventDefault();
   const artist = e.target.elements.artist.value;
   const replaced = artist.replace(/ /g, '+');
-    axios.get(`https://itunes.apple.com/search?term=${replaced}&limit=15`,  {
-      method: 'GET',
-      mode: 'no-cors',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'application/json'
-      },
-      withCredentials: true,
-      credentials: 'same-origin',
-    })
+    axios.get(`https://itunes.apple.com/search?term=${replaced}&limit=15`)
       .then((response) => {
       let res = response.data;
       this.setState({ items: res.results})
