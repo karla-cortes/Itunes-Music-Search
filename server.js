@@ -1,13 +1,16 @@
 const express = require('express');
-const bodyParser = require('body-parser')
-const path = require('path');
+const axios = require('axios');
 const app = express();
-const cors = require('cors');
-app.use(express.static(path.join(__dirname, 'build')));
 
+app.use(express.static('./build'));
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+app.get('/search/:artist', (req, res) => {
+  let artist = req.params.artist;
+  axios.get(`https://itunes.apple.com/search?term=${artist}&limit=15`).then(response => {
+    res.json(response.data)
+  })
+})
 
-app.listen(process.env.PORT || 5000);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

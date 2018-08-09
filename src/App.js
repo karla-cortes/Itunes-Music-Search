@@ -9,6 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         <h1>SongSearch</h1>
         <h3>Welcome to SongSearch. Search for your favorite artist and we will do the rest.</h3>
         <Data />

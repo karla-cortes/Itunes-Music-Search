@@ -15,12 +15,10 @@ handleSubmit = (e) => {
   e.preventDefault();
   const artist = e.target.elements.artist.value;
   const replaced = artist.replace(/ /g, '+');
-    axios.get(`https://itunes.apple.com/search?term=${replaced}&limit=15`)
-      .then((response) => {
-      let res = response.data;
-      this.setState({ items: res.results})
-    })
-    .catch((error) => { console.log(error)})
+  axios.get(`/search/${replaced}`).then(response => {
+    let res = response.data;
+    this.setState({ items: res.results})
+  }).catch((error) => { console.log(error)});
 }
 
 
