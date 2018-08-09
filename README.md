@@ -1,6 +1,6 @@
-# iTunes Music Search
+# Song Search
 
-Music Search created with React
+Music Search created with React using iTunes API connected with Express Server.
 
 [SongSearch](https://song-search.herokuapp.com/)
 
